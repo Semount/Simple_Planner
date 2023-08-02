@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Simple_Planner"
         mc:Ignorable="d"
-        Title="SimplePlanner" Height="450" Width="800">
-    <Grid>
-        <Button Content="Press" FontSize="15" Width="80" Height="40" Click="Button_Click"/>
+        Title="SimplePlanner" Height="800" Width="600" Loaded="Window_Loaded">
+    <Grid Margin="2">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="Left_Bar" Width="180"/>
+            <ColumnDefinition x:Name="Main_Space" Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <UniformGrid Grid.Column="0">
+            <DockPanel LastChildFill="False">
+                <Button x:Name="Collapse_button" DockPanel.Dock="Top" Height="20" Content="Collapse" FontSize="13" Click="Button_Collapse"/>
+            </DockPanel>
+        </UniformGrid>
+
+        <UniformGrid Grid.Column="1">
+            <DataGrid x:Name="TaskList" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=CreationDate}"  IsReadOnly="True" Header="Created at" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="Description" Width="*"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Binding="{Binding Path=IsDone}" IsReadOnly="False" Header="Done" Width="0.15*"></DataGridCheckBoxColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </UniformGrid>
     </Grid>
 </Window>
