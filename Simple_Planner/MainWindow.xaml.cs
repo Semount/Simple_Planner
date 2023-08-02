@@ -27,7 +27,7 @@ namespace Simple_Planner
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Fuck you");
+            MessageBox.Show("Love to you");
         }
     }
 }
