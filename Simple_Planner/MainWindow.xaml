@@ -24,7 +24,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=CreationDate}"  IsReadOnly="True" Header="Created at" Width="0.3*"></DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="Description" Width="*"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Binding="{Binding Path=IsDone}" IsReadOnly="False" Header="Done" Width="0.15*"></DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Done" Width="0.15*"></DataGridCheckBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </UniformGrid>

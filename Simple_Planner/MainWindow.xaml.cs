@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Simple_Planner.Models;
+using Simple_Planner.Usage;
 
 namespace Simple_Planner
 {
@@ -22,17 +23,43 @@ namespace Simple_Planner
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly string PATH = $"{Environment.CurrentDirectory}\\Simple_PlannerDataList.json";
         private BindingList<PlannerModel> _PlannerData;
+        private Output _fileOutput;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _PlannerData = new BindingList<PlannerModel>()
+            _fileOutput = new Output(PATH);
+            try
             {
-                new PlannerModel {Text = "First"},
-                new PlannerModel {Text = "Second"}
-            };
+                _PlannerData = _fileOutput.LoadData();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+                Close();
+            }
+            
 
             TaskList.ItemsSource = _PlannerData;
+            _PlannerData.ListChanged += _PlannerData_ListChanged;
+        }
+
+        private void _PlannerData_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                try
+                {
+                    _fileOutput.SaveData(sender);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                    Close();
+                }
+            }
+            
         }
 
         bool collapse = false;
