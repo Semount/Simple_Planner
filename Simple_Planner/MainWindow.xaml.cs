@@ -39,7 +39,6 @@ namespace Simple_Planner
                 MessageBox.Show(err.Message);
                 Close();
             }
-            
 
             TaskList.ItemsSource = _PlannerData;
             _PlannerData.ListChanged += _PlannerData_ListChanged;
@@ -62,27 +61,12 @@ namespace Simple_Planner
             
         }
 
-        bool collapse = false;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Collapse(object sender, RoutedEventArgs e)
-        {
-            if (collapse == false)
-            {
-                this.Left_Bar.Width = new GridLength(35, GridUnitType.Pixel);
-                this.Collapse_button.Content = "->";
-                collapse = true;
-            }
-            else
-            {
-                this.Left_Bar.Width = new GridLength(180, GridUnitType.Pixel);
-                this.Collapse_button.Content = "Collapse";
-                collapse = false;
-            }
-        }
+       
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
