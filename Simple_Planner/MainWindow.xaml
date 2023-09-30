@@ -5,35 +5,75 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Simple_Planner"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:Simple_Planner.ViewModels"
     Title="SimplePlanner"
     Width="600"
     Height="800"
+    AllowsTransparency="True"
+    Background="Transparent"
     Loaded="Window_Loaded"
+    ResizeMode="CanMinimize"
+    WindowStyle="None"
     mc:Ignorable="d">
-    <Grid Margin="2">
-        <UniformGrid Grid.Column="1">
-            <DataGrid x:Name="TaskList" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="0.35*"
-                        Binding="{Binding Path=CreationDate}"
-                        Header="Created at"
-                        IsReadOnly="True" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Path=Text}"
-                        Header="Description"
-                        IsReadOnly="False" />
-                    <DataGridCheckBoxColumn
-                        Width="0.15*"
-                        Binding="{Binding Mode=TwoWay, Path=IsDone, UpdateSourceTrigger=PropertyChanged}"
-                        Header="Done"
-                        IsReadOnly="False">
-                        
-                    </DataGridCheckBoxColumn>
 
-                </DataGrid.Columns>
-            </DataGrid>
-        </UniformGrid>
-    </Grid>
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+
+    </Window.DataContext>
+
+    <Border Background="#007060" CornerRadius="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="5,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="13"
+                Foreground="White"
+                Text="Simple Planner" />
+            <StackPanel Grid.Row="1">
+                <RadioButton
+                    Height="50"
+                    Command="{Binding HomeViewCommand}"
+                    Content="Home"
+                    FontSize="14"
+                    Foreground="White"
+                    IsChecked="True"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+                <RadioButton
+                    Height="50"
+                    Command="{Binding MPlannerViewCommand}"
+                    Content="18+ Hentai"
+                    FontSize="14"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+                <RadioButton
+                    Height="50"
+                    Content="12+ Hentai"
+                    FontSize="14"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+            </StackPanel>
+            
+            <ContentControl
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10"
+                Content="{Binding currentView}" />
+
+            
+            
+        </Grid>
+    </Border>
 </Window>

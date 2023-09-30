@@ -15,7 +15,7 @@ namespace Simple_Planner.Models
         public DateTime CreationDate { get; set; } = DateTime.Now;
         
         public bool _IsDone;
-        private string _Text; 
+        public string _Text; 
         
         [JsonProperty(PropertyName = "isDone")] 
     
@@ -43,7 +43,6 @@ namespace Simple_Planner.Models
             }
         }
 
-        public event PropertyChangedEventHandler CheckBoxPropertyChanged;
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string PropertyName = "")
         {
