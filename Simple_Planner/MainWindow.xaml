@@ -8,7 +8,7 @@
     xmlns:viewModel="clr-namespace:Simple_Planner.ViewModels"
     Title="SimplePlanner"
     Width="600"
-    Height="800"
+    Height="700"
     AllowsTransparency="True"
     Background="Transparent"
     Loaded="Window_Loaded"
@@ -21,7 +21,7 @@
 
     </Window.DataContext>
 
-    <Border Background="#007060" CornerRadius="5">
+    <Border Background="#405080" CornerRadius="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
@@ -52,28 +52,58 @@
                 <RadioButton
                     Height="50"
                     Command="{Binding MPlannerViewCommand}"
-                    Content="18+ Hentai"
+                    Content="Planner"
                     FontSize="14"
                     Foreground="White"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     Height="50"
-                    Content="12+ Hentai"
+                    Content="Quick notes"
                     FontSize="14"
                     Foreground="White"
                     Style="{StaticResource MenuButtonStyle}" />
 
             </StackPanel>
-            
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+
+                <Button
+                    x:Name="Close_Button"
+                    Width="15"
+                    Height="15"
+                    Margin="0,5,5,20"
+                    Padding="0.8,-2.5,1,1"
+                    Background="#FF5050"
+                    BorderBrush="#FF8080"
+                    BorderThickness="0.5"
+                    Click="Close_Button_Click"
+                    Content="x"
+                    FontSize="10">
+                    <Button.Effect>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="330"
+                            Opacity="0.8"
+                            RenderingBias="Performance"
+                            ShadowDepth="3" />
+                    </Button.Effect>
+                </Button>
+
+            </StackPanel>
+
             <ContentControl
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="10"
                 Content="{Binding currentView}" />
 
-            
-            
+
+
         </Grid>
     </Border>
 </Window>
