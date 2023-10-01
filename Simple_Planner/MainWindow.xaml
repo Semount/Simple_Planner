@@ -59,6 +59,7 @@
 
                 <RadioButton
                     Height="50"
+                    Command="{Binding QuickNotesViewCommand}"
                     Content="Quick notes"
                     FontSize="14"
                     Foreground="White"

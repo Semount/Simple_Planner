@@ -20,6 +20,10 @@
                 <view:MPlanner />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:QuickNotesViewModel}">
+                <view:QuickNotes />
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

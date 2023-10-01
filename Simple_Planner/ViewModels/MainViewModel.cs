@@ -23,10 +23,13 @@ namespace Simple_Planner.ViewModels
 
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand MPlannerViewCommand { get; set; }
+        public RelayCommand QuickNotesViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
 
         public MPlannerViewModel MPlannerVM { get; set; }
+
+        public QuickNotesViewModel QuickNotesVM { get; set; }
 
         private object _currentView;
 
@@ -61,6 +64,7 @@ namespace Simple_Planner.ViewModels
         {
             HomeVM = new HomeViewModel();
             MPlannerVM = new MPlannerViewModel();
+            QuickNotesVM = new QuickNotesViewModel();
             currentView = HomeVM;
 
             HomeViewCommand = new RelayCommand(o =>
@@ -82,6 +86,11 @@ namespace Simple_Planner.ViewModels
                     //Close();
                 }
 
+            });
+
+            QuickNotesViewCommand = new RelayCommand(o =>
+            {
+                currentView = QuickNotesVM;
             });
 
         }
