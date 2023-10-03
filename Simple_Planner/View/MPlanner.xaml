@@ -19,16 +19,19 @@
                 <DataGridTextColumn
                     Width="0.35*"
                     Binding="{Binding Path=CreationDate}"
+                    CanUserResize="False"
                     Header="Created at"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding Path=Text}"
+                    CanUserResize="False"
                     Header="Description"
                     IsReadOnly="False" />
                 <DataGridCheckBoxColumn
                     Width="0.15*"
                     Binding="{Binding Mode=TwoWay, Path=IsDone, UpdateSourceTrigger=PropertyChanged}"
+                    CanUserResize="False"
                     Header="Done"
                     IsReadOnly="False" />
             </DataGrid.Columns>

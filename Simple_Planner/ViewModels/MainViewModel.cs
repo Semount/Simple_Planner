@@ -16,11 +16,6 @@ namespace Simple_Planner.ViewModels
 {
     internal class MainViewModel : ObservableObject
     {
-
-        public static readonly string PATH = $"{Environment.CurrentDirectory}\\Simple_PlannerDataList.json";
-        public static BindingList<PlannerModel> _PlannerData { get; set; }
-        public static Output _fileOutput;
-
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand MPlannerViewCommand { get; set; }
         public RelayCommand QuickNotesViewCommand { get; set; }
@@ -42,6 +37,10 @@ namespace Simple_Planner.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public static readonly string PATH = $"{Environment.CurrentDirectory}\\Simple_PlannerDataList.json";
+        public static BindingList<PlannerModel> _PlannerData { get; set; }
+        public static Output _fileOutput;
 
         public static void _PlannerData_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -66,7 +65,16 @@ namespace Simple_Planner.ViewModels
             MPlannerVM = new MPlannerViewModel();
             QuickNotesVM = new QuickNotesViewModel();
             currentView = HomeVM;
-
+            _fileOutput = new Output(PATH);
+            try
+            {
+                _PlannerData = _fileOutput.LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            _PlannerData.ListChanged += _PlannerData_ListChanged;
             HomeViewCommand = new RelayCommand(o =>
             {
                 currentView = HomeVM;
@@ -75,17 +83,7 @@ namespace Simple_Planner.ViewModels
             MPlannerViewCommand = new RelayCommand(o =>
             {
                 currentView = MPlannerVM;
-                _fileOutput = new Output(PATH);
-                try
-                {
-                    _PlannerData = _fileOutput.LoadData();
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message);
-                    //Close();
-                }
-
+                
             });
 
             QuickNotesViewCommand = new RelayCommand(o =>

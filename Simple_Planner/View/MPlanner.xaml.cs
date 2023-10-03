@@ -30,7 +30,7 @@ namespace Simple_Planner.View
             InitializeComponent();
 
             TaskList.ItemsSource = MainViewModel._PlannerData;
-            MainViewModel._PlannerData.ListChanged += MainViewModel._PlannerData_ListChanged;
+            
         }
     }
 }

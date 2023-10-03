@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_Planner.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Simple_Planner.View
         public HomeView()
         {
             InitializeComponent();
+        }
+        delegate void ChangeToMPlanner();
+        private void MouseBinding_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
