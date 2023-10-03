@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Simple_Planner.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="490"
     mc:Ignorable="d">
 
     <Grid>
@@ -14,11 +14,13 @@
             x:Name="TaskList"
             Grid.Row="1"
             Grid.Column="1"
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+            RowStyle="{StaticResource DataGridRowStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="0.35*"
-                    Binding="{Binding Path=CreationDate}"
+                    Width="0.32*"
+                    Binding="{Binding Path=CreationDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"
                     CanUserResize="False"
                     Header="Created at"
                     IsReadOnly="True" />
@@ -29,7 +31,7 @@
                     Header="Description"
                     IsReadOnly="False" />
                 <DataGridCheckBoxColumn
-                    Width="0.15*"
+                    Width="0.13*"
                     Binding="{Binding Mode=TwoWay, Path=IsDone, UpdateSourceTrigger=PropertyChanged}"
                     CanUserResize="False"
                     Header="Done"
