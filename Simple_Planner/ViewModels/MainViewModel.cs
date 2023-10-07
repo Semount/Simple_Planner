@@ -38,43 +38,14 @@ namespace Simple_Planner.ViewModels
             }
         }
 
-        public static readonly string PATH = $"{Environment.CurrentDirectory}\\Simple_PlannerDataList.json";
-        public static BindingList<PlannerModel> _PlannerData { get; set; }
-        public static Output _fileOutput;
-
-        public static void _PlannerData_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
-            {
-                try
-                {
-                    _fileOutput.SaveData(sender);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message);
-                    //Close();
-                }
-            }
-
-        }
-
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
             MPlannerVM = new MPlannerViewModel();
             QuickNotesVM = new QuickNotesViewModel();
             currentView = HomeVM;
-            _fileOutput = new Output(PATH);
-            try
-            {
-                _PlannerData = _fileOutput.LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            _PlannerData.ListChanged += _PlannerData_ListChanged;
+
+
             HomeViewCommand = new RelayCommand(o =>
             {
                 currentView = HomeVM;

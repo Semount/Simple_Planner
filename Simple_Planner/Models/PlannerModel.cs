@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
+using Simple_Planner.Core;
+using Simple_Planner.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,17 +9,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Simple_Planner.Models
 {
-    internal class PlannerModel: INotifyPropertyChanged
+    public class PlannerModel: INotifyPropertyChanged
     {
         [JsonProperty(PropertyName = "creationDate")]
         public DateTime CreationDate { get; set; } = DateTime.Now;
-        
         public bool _IsDone;
-        public string _Text; 
-        
+        public string _Text;
+
+        private ICommand _removeRowCommand { get; set; }
+        public ICommand RemoveRowCommand
+        {
+            get
+            {
+                if (_removeRowCommand == null)
+                    return _removeRowCommand = new RelayCommand<Object>(RemoveRow);
+                else return _removeRowCommand;
+            }
+        }
+        public static void RemoveRow(object SelectedItem)
+        {
+            if (null != SelectedItem)
+            {
+                //MPlanner.PlannerData.Remove(SelectedItem);
+                PlannerModel model = SelectedItem as PlannerModel;
+                MPlanner.PlannerData.Remove(model);
+            }
+        }
+
         [JsonProperty(PropertyName = "isDone")] 
     
         public bool IsDone 

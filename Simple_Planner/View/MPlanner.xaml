@@ -5,10 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Simple_Planner.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Simple_Planner.Models"
+    xmlns:vm="clr-namespace:Simple_Planner.ViewModels"
+    d:DataContext="{d:DesignInstance Type=models:PlannerModel}"
     d:DesignHeight="450"
     d:DesignWidth="490"
     mc:Ignorable="d">
-
+    <UserControl.DataContext>
+        <vm:MPlannerViewModel />
+    </UserControl.DataContext>
     <Grid>
         <DataGrid
             x:Name="TaskList"
@@ -17,6 +22,7 @@
             AutoGenerateColumns="False"
             ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
             RowStyle="{StaticResource DataGridRowStyle}">
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="0.32*"
