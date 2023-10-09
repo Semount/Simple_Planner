@@ -159,6 +159,7 @@
             BorderThickness="1">
             <StackPanel>
                 <Button
+                    Style="{DynamicResource DataGridIsSelectedButton}"
                     Command="{Binding RemoveRowCommand}"
                     CommandParameter="{Binding ElementName=TaskList, Path=SelectedItem}"
                     Content="Remove" />
