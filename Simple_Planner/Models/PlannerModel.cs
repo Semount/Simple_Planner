@@ -5,6 +5,7 @@ using Simple_Planner.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,25 +22,7 @@ namespace Simple_Planner.Models
         public bool _IsDone;
         public string _Text;
 
-        private ICommand _removeRowCommand { get; set; }
-        public ICommand RemoveRowCommand
-        {
-            get
-            {
-                if (_removeRowCommand == null)
-                    return _removeRowCommand = new RelayCommand<Object>(RemoveRow);
-                else return _removeRowCommand;
-            }
-        }
-        public static void RemoveRow(object SelectedItem)
-        {
-            if (null != SelectedItem)
-            {
-                //MPlanner.PlannerData.Remove(SelectedItem);
-                PlannerModel model = SelectedItem as PlannerModel;
-                MPlanner.PlannerData.Remove(model);
-            }
-        }
+        
 
         [JsonProperty(PropertyName = "isDone")] 
     
@@ -73,7 +56,6 @@ namespace Simple_Planner.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
 
         }
-
         protected virtual void OnCheckboxPropertyChanged()
         {
             if (_IsDone == true)
@@ -84,6 +66,42 @@ namespace Simple_Planner.Models
                 player.Load();
                 player.Play();
             }
+        }
+
+        private ICommand _removeRowCommand { get; set; }
+        public ICommand RemoveRowCommand
+        {
+            get
+            {
+                if (_removeRowCommand == null)
+                    return _removeRowCommand = new RelayCommand<Object>(RemoveRow);
+                else return _removeRowCommand;
+            }
+        }
+        public static void RemoveRow(object SelectedItem)
+        {
+            if (null != SelectedItem)
+            {
+                PlannerModel model = SelectedItem as PlannerModel;
+                MPlanner.PlannerData.Remove(model);
+            }
+        }
+        private ICommand _closeRowCommand { get; set; }
+        public ICommand CloseRowCommand
+        {
+            get
+            {
+                if (_closeRowCommand == null)
+                    return _closeRowCommand = new GalaSoft.MvvmLight.Command.RelayCommand<Object>(CloseRow);
+                else return _closeRowCommand;
+            }
+        }
+        public void CloseRow(object sender)
+        {
+            //var fuckme = new MPlanner();
+            //fuckme.CloseRow(sender);
+            var dg = sender as DataGrid;
+            dg.UnselectAllCells();
         }
     }
 }

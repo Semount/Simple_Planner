@@ -32,8 +32,9 @@ namespace Simple_Planner.View
 
         public static readonly string PATH = $"{Environment.CurrentDirectory}\\Simple_PlannerDataList.json";
         private static BindingList<PlannerModel> _plannerData { get; set; }
-        public static BindingList<PlannerModel> PlannerData { 
-            get 
+        public static BindingList<PlannerModel> PlannerData
+        {
+            get
             {
                 return _plannerData;
             }
@@ -45,7 +46,6 @@ namespace Simple_Planner.View
                 }
             }
         }
-        public BindingList<PlannerModel> newpl = new BindingList<PlannerModel>();
         private static Output _fileOutput;
 
         public static void PlannerData_ListChanged(object sender, ListChangedEventArgs e)
@@ -63,11 +63,12 @@ namespace Simple_Planner.View
                 }
             }
         }
+
         public MPlanner()
         {
             InitializeComponent();
-            _fileOutput = new Output(PATH);
 
+            _fileOutput = new Output(PATH);
             try
             {
                 _plannerData = _fileOutput.LoadData();
@@ -79,6 +80,5 @@ namespace Simple_Planner.View
             _plannerData.ListChanged += PlannerData_ListChanged;
             TaskList.ItemsSource = _plannerData;
         }
-
     }
 }
