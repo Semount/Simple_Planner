@@ -168,7 +168,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\rofl.png" />
+    <Resource Include="Images\green_check_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\quill_and_paper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\thumbs_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="green_check_mark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
