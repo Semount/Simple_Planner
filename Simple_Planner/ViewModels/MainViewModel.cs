@@ -28,7 +28,7 @@ namespace Simple_Planner.ViewModels
 
         private object _currentView;
 
-        public object currentView
+        public object CurrentView
         {
             get { return _currentView; }
             set 
@@ -43,23 +43,23 @@ namespace Simple_Planner.ViewModels
             HomeVM = new HomeViewModel();
             MPlannerVM = new MPlannerViewModel();
             QuickNotesVM = new QuickNotesViewModel();
-            currentView = HomeVM;
+            CurrentView = HomeVM;
 
 
             HomeViewCommand = new RelayCommand(o =>
             {
-                currentView = HomeVM;
+                CurrentView = HomeVM;
             });
 
             MPlannerViewCommand = new RelayCommand(o =>
             {
-                currentView = MPlannerVM;
+                CurrentView = MPlannerVM;
                 
             });
 
             QuickNotesViewCommand = new RelayCommand(o =>
             {
-                currentView = QuickNotesVM;
+                CurrentView = QuickNotesVM;
             });
 
         }

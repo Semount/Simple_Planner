@@ -5,15 +5,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Simple_Planner.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Simple_Planner.Models"
+    xmlns:vm="clr-namespace:Simple_Planner.ViewModels"
+    d:DataContext="{d:DesignInstance Type=models:QuickNotesModel}"
     d:DesignHeight="450"
     d:DesignWidth="490"
     mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:QuickNotesViewModel />
+    </UserControl.DataContext>
     <Grid>
         <StackPanel Margin="5" Orientation="Vertical">
-            <TextBox
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Center"
-                Style="{StaticResource QuickNoteBox}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox
+                    x:Name="QuickNotesTextBox"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center"
+                    Style="{StaticResource QuickNoteBox}" />
+                <Button
+                    Width="30"
+                    Margin="1"
+                    Background="#353340"
+                    BorderThickness="0"
+                    Command="{Binding AddNewRowCommand}">
+                    <Button.DataContext>
+                        <vm:QuickNotesViewModel />
+                    </Button.DataContext>
+                </Button>
+            </StackPanel>
+            <ListView
+                x:Name="QuickNotesList"
+                Height="400"
+                Margin="0,5"
+                Background="Transparent"
+                BorderThickness="0"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding NoteText}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>

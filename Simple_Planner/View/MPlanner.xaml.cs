@@ -71,7 +71,7 @@ namespace Simple_Planner.View
             _fileOutput = new Output(PATH);
             try
             {
-                _plannerData = _fileOutput.LoadData();
+                _plannerData = _fileOutput.LoadPlannerData();
             }
             catch (Exception ex)
             {

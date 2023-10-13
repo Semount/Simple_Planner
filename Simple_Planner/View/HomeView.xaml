@@ -71,7 +71,6 @@
                 Text="Discover" />
 
             <StackPanel Orientation="Horizontal">
-
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="Margin" Value="40,0,0,0" />
@@ -88,11 +87,12 @@
                             <GradientStop Offset="1.05" Color="White" />
                         </LinearGradientBrush>
                     </Border.Background>
+
                     <Grid>
                         <Image
                             Width="80"
                             Height="80"
-                            Margin="0,-10,-5,10"
+                            Margin="0,-10,-10,10"
                             HorizontalAlignment="Right"
                             Source="/Images/green_check_mark.png" />
 

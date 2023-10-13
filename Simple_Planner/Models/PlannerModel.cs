@@ -17,11 +17,10 @@ namespace Simple_Planner.Models
 {
     public class PlannerModel: INotifyPropertyChanged
     {
+        private bool _IsDone;
+        private string _Text;
         [JsonProperty(PropertyName = "creationDate")]
         public DateTime CreationDate { get; set; } = DateTime.Now;
-        public bool _IsDone;
-        public string _Text;
-
         
 
         [JsonProperty(PropertyName = "isDone")] 
@@ -68,40 +67,6 @@ namespace Simple_Planner.Models
             }
         }
 
-        private ICommand _removeRowCommand { get; set; }
-        public ICommand RemoveRowCommand
-        {
-            get
-            {
-                if (_removeRowCommand == null)
-                    return _removeRowCommand = new RelayCommand<Object>(RemoveRow);
-                else return _removeRowCommand;
-            }
-        }
-        public static void RemoveRow(object SelectedItem)
-        {
-            if (null != SelectedItem)
-            {
-                PlannerModel model = SelectedItem as PlannerModel;
-                MPlanner.PlannerData.Remove(model);
-            }
-        }
-        private ICommand _closeRowCommand { get; set; }
-        public ICommand CloseRowCommand
-        {
-            get
-            {
-                if (_closeRowCommand == null)
-                    return _closeRowCommand = new GalaSoft.MvvmLight.Command.RelayCommand<Object>(CloseRow);
-                else return _closeRowCommand;
-            }
-        }
-        public void CloseRow(object sender)
-        {
-            //var fuckme = new MPlanner();
-            //fuckme.CloseRow(sender);
-            var dg = sender as DataGrid;
-            dg.UnselectAllCells();
-        }
+        
     }
 }

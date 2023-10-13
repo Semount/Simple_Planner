@@ -19,7 +19,7 @@ namespace Simple_Planner.Usage
             PATH = path;
         }
 
-        public BindingList<PlannerModel> LoadData()
+        public BindingList<PlannerModel> LoadPlannerData()
         {
             bool FileExist = File.Exists(PATH);
             if (!FileExist)
@@ -35,11 +35,27 @@ namespace Simple_Planner.Usage
             }
         }
 
-        public void SaveData(object PlannerData)
+        public BindingList<QuickNotesModel> LoadQuickNotesData()
+        {
+            bool FileExist = File.Exists(PATH);
+            if (!FileExist)
+            {
+                File.CreateText(PATH).Dispose();
+                return new BindingList<QuickNotesModel>();
+            }
+            using (var reader = File.OpenText(PATH))
+            {
+                var FileText = reader.ReadToEnd();
+                if (FileText == "") { return new BindingList<QuickNotesModel>(); }
+                return JsonConvert.DeserializeObject<BindingList<QuickNotesModel>>(FileText);
+            }
+        }
+
+        public void SaveData(object Data)
         {
             using (StreamWriter writer = File.CreateText(PATH))
             {
-                string output = JsonConvert.SerializeObject(PlannerData);
+                string output = JsonConvert.SerializeObject(Data);
                 writer.Write(output);
             }
         }
