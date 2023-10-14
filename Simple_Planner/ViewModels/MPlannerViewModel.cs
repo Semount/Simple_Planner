@@ -46,8 +46,8 @@ namespace Simple_Planner.ViewModels
         }
         public void CloseRow(object sender)
         {
-            var dg = sender as DataGrid;
-            dg.UnselectAllCells();
+            var ToClose = sender as DataGrid;
+            ToClose.UnselectAllCells();
         }
     }
 }

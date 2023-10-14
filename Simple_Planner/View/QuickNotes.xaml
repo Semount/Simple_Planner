@@ -7,46 +7,104 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Simple_Planner.Models"
     xmlns:vm="clr-namespace:Simple_Planner.ViewModels"
-    d:DataContext="{d:DesignInstance Type=models:QuickNotesModel}"
     d:DesignHeight="450"
     d:DesignWidth="490"
     mc:Ignorable="d">
-    <UserControl.DataContext>
-        <vm:QuickNotesViewModel />
-    </UserControl.DataContext>
     <Grid>
         <StackPanel Margin="5" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <TextBox
-                    x:Name="QuickNotesTextBox"
-                    HorizontalContentAlignment="Left"
-                    VerticalContentAlignment="Center"
-                    Style="{StaticResource QuickNoteBox}" />
+                <Border
+                    Width="450"
+                    Height="40"
+                    Background="#353340"
+                    CornerRadius="10">
+                    <Grid>
+
+                        <Rectangle StrokeThickness="1" />
+
+                        <TextBox
+                            x:Name="QuickNotesTextBox"
+                            Margin="1"
+                            Padding="5"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="#CFCFCF" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="11"
+                            Foreground="DarkGray"
+                            IsHitTestVisible="False"
+                            Text="New note">
+
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=QuickNotesTextBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Visibility" Value="Hidden" />
+                                </Style>
+                            </TextBlock.Style>
+
+                        </TextBlock>
+
+                    </Grid>
+                </Border>
                 <Button
                     Width="30"
                     Margin="1"
                     Background="#353340"
                     BorderThickness="0"
-                    Command="{Binding AddNewRowCommand}">
-                    <Button.DataContext>
-                        <vm:QuickNotesViewModel />
-                    </Button.DataContext>
-                </Button>
+                    Click="AddNewRow" />
             </StackPanel>
-            <ListView
-                x:Name="QuickNotesList"
-                Height="400"
-                Margin="0,5"
-                Background="Transparent"
-                BorderThickness="0"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding NoteText}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListView
+                    x:Name="QuickNotesList"
+                    Grid.Column="0"
+                    Height="400"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridView.Columns>
+                                <GridViewColumn
+                                    x:Name="NoteColumn"
+                                    DisplayMemberBinding="{Binding NoteText}"
+                                    Header="Note" />
+                                <GridViewColumn x:Name="RemoveButtonColumn" Width="58">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Click="RemoveThisRow"
+                                                Visibility="Visible">
+                                                <Image
+                                                    Width="30"
+                                                    Height="30"
+                                                    Source="/Images/green_check_mark.png" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

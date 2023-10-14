@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Simple_Planner.Models;
+using Simple_Planner.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,5 @@ namespace Simple_Planner.ViewModels
 {
     internal class QuickNotesViewModel
     {
-        private ICommand _addNewRowCommand {  get; set; }
-        public ICommand AddNewRowCommand 
-        {
-            get
-            {
-                if (_addNewRowCommand == null)
-                    return _addNewRowCommand = new RelayCommand<Object>(AddNewRow);
-                else return _addNewRowCommand;
-            }
-        }
-        public void AddNewRow(object sender)
-        {
-            MessageBox.Show("UFCK");
-        }
     }
 }

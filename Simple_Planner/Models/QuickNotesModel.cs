@@ -10,14 +10,15 @@ namespace Simple_Planner.Models
 {
     public class QuickNotesModel : INotifyPropertyChanged
     {
-        [JsonProperty(PropertyName = "noteText")]
         private string _noteText;
+
+        [JsonProperty(PropertyName = "noteText")]
         public string NoteText
         {
             get { return _noteText; }
             set 
             {
-                if (_noteText != value) return; 
+                if (_noteText == value) return;
                 _noteText = value;
                 OnPropertyChanged("NoteText");
             }
@@ -26,7 +27,6 @@ namespace Simple_Planner.Models
         protected virtual void OnPropertyChanged(string PropertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-
         }
     }
 }
