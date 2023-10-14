@@ -180,5 +180,8 @@
   <ItemGroup>
     <Resource Include="green_check_mark.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

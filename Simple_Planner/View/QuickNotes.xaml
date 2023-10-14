@@ -95,7 +95,7 @@
                                                 <Image
                                                     Width="30"
                                                     Height="30"
-                                                    Source="/Images/green_check_mark.png" />
+                                                    Source="/Images/delete_icon.png" />
                                             </Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
