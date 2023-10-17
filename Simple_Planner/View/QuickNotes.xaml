@@ -10,6 +10,9 @@
     d:DesignHeight="450"
     d:DesignWidth="490"
     mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:QuickNotesViewModel />
+    </UserControl.DataContext>
     <Grid>
         <StackPanel Margin="5" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -64,45 +67,36 @@
                     Click="AddNewRow" />
             </StackPanel>
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
                 <ListView
                     x:Name="QuickNotesList"
                     Grid.Column="0"
-                    Height="400"
+                    Height="Auto"
                     Margin="0,5"
                     HorizontalAlignment="Stretch"
                     Background="Transparent"
-                    BorderThickness="0"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    BorderThickness="0">
                     <ListView.View>
-                        <GridView AllowsColumnReorder="False">
+                        <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource ListViewHeaderStyle}">
                             <GridView.Columns>
-                                <GridViewColumn
-                                    x:Name="NoteColumn"
-                                    DisplayMemberBinding="{Binding NoteText}"
-                                    Header="Note" />
-                                <GridViewColumn x:Name="RemoveButtonColumn" Width="58">
+                                <GridViewColumn x:Name="NoteColumn" Header="Note">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Click="RemoveThisRow"
-                                                Visibility="Visible">
-                                                <Image
-                                                    Width="30"
-                                                    Height="30"
-                                                    Source="/Images/delete_icon.png" />
-                                            </Button>
+                                            <TextBlock Foreground="White" Text="{Binding NoteText}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                             </GridView.Columns>
                         </GridView>
                     </ListView.View>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem
+                                Command="{Binding RemoveRowCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"
+                                Header="Remove" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+
                 </ListView>
             </Grid>
         </StackPanel>

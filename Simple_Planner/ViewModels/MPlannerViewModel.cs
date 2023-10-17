@@ -1,16 +1,9 @@
 ﻿using Simple_Planner.Models;
-using Simple_Planner.Usage;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using GalaSoft.MvvmLight.Command;
 using Simple_Planner.View;
 using System.Windows.Controls;
+using Simple_Planner.Core;
 
 namespace Simple_Planner.ViewModels
 {
@@ -26,7 +19,7 @@ namespace Simple_Planner.ViewModels
                 else return _removeRowCommand;
             }
         }
-        public static void RemoveRow(object SelectedItem)
+        private void RemoveRow(object SelectedItem)
         {
             if (null != SelectedItem)
             {
@@ -44,7 +37,7 @@ namespace Simple_Planner.ViewModels
                 else return _closeRowCommand;
             }
         }
-        public void CloseRow(object sender)
+        private void CloseRow(object sender)
         {
             var ToClose = sender as DataGrid;
             ToClose.UnselectAllCells();

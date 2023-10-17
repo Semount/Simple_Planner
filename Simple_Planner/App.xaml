@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="Styles/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGridStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGridIsSelectedButton.xaml"/>
+                <ResourceDictionary Source="Styles/ListViewStyle.xaml"/>
                 <ResourceDictionary Source="Assets/LightTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 

@@ -1,17 +1,6 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Newtonsoft.Json;
-using Simple_Planner.Core;
-using Simple_Planner.View;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Simple_Planner.Models
 {
