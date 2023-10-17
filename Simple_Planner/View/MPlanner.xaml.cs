@@ -48,6 +48,17 @@ namespace Simple_Planner.View
                 }
             }
         }
+        protected virtual void OnCheckboxChecked(object sender, RoutedEventArgs e)
+        {
+            if (TaskList.SelectedItem != null)
+            {
+                System.Media.SoundPlayer player =
+                new System.Media.SoundPlayer();
+                player.SoundLocation = $"{Environment.CurrentDirectory}\\complete.wav";
+                player.Load();
+                player.Play();
+            }
+        }
 
         public MPlanner()
         {

@@ -22,7 +22,6 @@ namespace Simple_Planner.Models
                 if (_IsDone == value) return;
                 _IsDone = value;
                 OnPropertyChanged("IsDone");
-                OnCheckboxPropertyChanged();
             }
         }
 
@@ -42,20 +41,6 @@ namespace Simple_Planner.Models
         protected virtual void OnPropertyChanged(string PropertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-
         }
-        protected virtual void OnCheckboxPropertyChanged()
-        {
-            if (_IsDone == true)
-            {
-                System.Media.SoundPlayer player =
-                new System.Media.SoundPlayer();
-                player.SoundLocation = $"{Environment.CurrentDirectory}\\complete.wav";
-                player.Load();
-                player.Play();
-            }
-        }
-
-        
     }
 }

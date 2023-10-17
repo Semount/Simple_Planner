@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Simple_Planner.Models"
     xmlns:vm="clr-namespace:Simple_Planner.ViewModels"
-    d:DataContext="{d:DesignInstance Type=models:PlannerModel}"
     d:DesignHeight="450"
     d:DesignWidth="490"
     mc:Ignorable="d">
@@ -41,7 +40,13 @@
                     Binding="{Binding Mode=TwoWay, Path=IsDone, UpdateSourceTrigger=PropertyChanged}"
                     CanUserResize="False"
                     Header="Done"
-                    IsReadOnly="False" />
+                    IsReadOnly="False" >
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style>
+                            <EventSetter Event="CheckBox.Checked" Handler="OnCheckboxChecked"/>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
+                </DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
