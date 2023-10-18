@@ -22,7 +22,7 @@
 
     </Window.DataContext>
 
-    <Border Background="#FF3B4C4A" CornerRadius="5">
+    <Border Background="#FF0F6C84" CornerRadius="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
@@ -33,7 +33,7 @@
                 <RowDefinition Height="35" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Background="#FF29634D">
+            <StackPanel Orientation="Horizontal" Background="#FF418E71">
                 <TextBlock
                     Margin="7,0"
                     HorizontalAlignment="Left"
@@ -43,7 +43,7 @@
                     Text="Simple Planner" />
 
             </StackPanel>
-            <StackPanel Grid.Row="1" Background="#FF29634D">
+            <StackPanel Grid.Row="1" Background="#FF418E71">
                 <RadioButton
                     Height="50"
                     Command="{Binding HomeViewCommand}"

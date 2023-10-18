@@ -17,7 +17,7 @@
         <StackPanel Margin="5" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Border
-                    Width="450"
+                    Width="440"
                     Height="40"
                     Background="#353340"
                     CornerRadius="10">
@@ -39,8 +39,8 @@
                             Margin="10,0,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            FontSize="11"
-                            Foreground="DarkGray"
+                            FontSize="12"
+                            Foreground="#FFD8D8D8"
                             IsHitTestVisible="False"
                             Text="New note">
 
@@ -64,41 +64,60 @@
                     Margin="1"
                     Background="#353340"
                     BorderThickness="0"
-                    Click="AddNewRow" />
+                    Click="AddNewRow">
+                    <Button.Content>
+                        <Label
+                            Margin="-4,-5,0,0"
+                            Content="-&gt;"
+                            FontSize="20"
+                            FontStyle="Oblique"
+                            Foreground="#FFD8D8D8" />
+                    </Button.Content>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </StackPanel>
-            <Grid>
-                <ListView
-                    x:Name="QuickNotesList"
-                    Grid.Column="0"
-                    Height="Auto"
-                    Margin="0,5"
-                    HorizontalAlignment="Stretch"
-                    Background="Transparent"
-                    BorderThickness="0">
-                    <ListView.View>
-                        <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource ListViewHeaderStyle}">
-                            <GridView.Columns>
-                                <GridViewColumn x:Name="NoteColumn" Header="Note">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Foreground="White" Text="{Binding NoteText}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView.Columns>
-                        </GridView>
-                    </ListView.View>
-                    <ListView.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem
-                                Command="{Binding RemoveRowCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"
-                                Header="Remove" />
-                        </ContextMenu>
-                    </ListView.ContextMenu>
 
-                </ListView>
-            </Grid>
+            <ListView
+                x:Name="QuickNotesList"
+                Grid.Column="0"
+                Margin="0,5"
+                HorizontalAlignment="Stretch"
+                Background="Transparent"
+                BorderThickness="0"
+                FontSize="14"
+                ItemContainerStyle="{DynamicResource ListViewItems}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource ListViewHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn
+                                x:Name="NoteColumn"
+                                Header="Note">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Width="450"
+                                            Margin="0,3,0,3"
+                                            Foreground="White"
+                                            Text="{Binding NoteText}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            Command="{Binding RemoveRowCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"
+                            Header="Remove" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>
