@@ -31,7 +31,7 @@ namespace Simple_Planner.View
                 }
             }
         }
-        private static Output _fileOutput;
+        private static Planner_Output _fileOutput;
 
         public static void PlannerData_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -63,8 +63,7 @@ namespace Simple_Planner.View
         public MPlanner()
         {
             InitializeComponent();
-
-            _fileOutput = new Output(PATH);
+            _fileOutput = new Planner_Output(PATH);
             try
             {
                 _plannerData = _fileOutput.LoadPlannerData();

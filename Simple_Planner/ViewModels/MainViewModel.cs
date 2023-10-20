@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Simple_Planner.Core;
-using Simple_Planner.Models;
-using Simple_Planner.Usage;
-using Simple_Planner.View;
-
+﻿using Simple_Planner.Core;
 
 namespace Simple_Planner.ViewModels
 {

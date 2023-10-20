@@ -3,9 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Simple_Planner.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="clr-namespace:Simple_Planner.Models"
     xmlns:vm="clr-namespace:Simple_Planner.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="490"
@@ -75,7 +73,7 @@
                     </Button.Content>
                     <Button.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                            <Setter Property="CornerRadius" Value="10" />
                         </Style>
                     </Button.Resources>
                 </Button>
@@ -93,9 +91,7 @@
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource ListViewHeaderStyle}">
                         <GridView.Columns>
-                            <GridViewColumn
-                                x:Name="NoteColumn"
-                                Header="Note">
+                            <GridViewColumn x:Name="NoteColumn" Header="Note">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock

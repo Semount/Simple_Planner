@@ -26,7 +26,7 @@ namespace Simple_Planner.ViewModels
                 }
             }
         }
-        private static Output _fileOutput;
+        private static QuickNotes_Output _fileOutput;
 
         public static void QuickNotes_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -62,7 +62,7 @@ namespace Simple_Planner.ViewModels
 
         public QuickNotesViewModel()
         {
-            _fileOutput = new Output(PATH);
+            _fileOutput = new QuickNotes_Output(PATH);
             try
             {
                 QuickNotesData = _fileOutput.LoadQuickNotesData();
